@@ -1,9 +1,11 @@
-[project]
-name = "backend"
-version = "0.1.0"
-description = "Add your description here"
-readme = "README.md"
-requires-python = ">=3.12"
-dependencies = [
-    "django>=5.1.7",
-]
+[tool.coverage.run]
+branch = true
+parallel = true
+omit = ["conf/*.py", "manage.py"]
+source = ["."]
+command_line = "manage.py test"
+
+[tool.coverage.report]
+omit = ["conf/*.py", "manage.py"]
+show_missing = true
+skip_covered = true
