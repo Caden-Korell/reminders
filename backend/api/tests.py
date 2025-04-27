@@ -1,6 +1,6 @@
 from rest_framework import status
 from rest_framework.test import APITestCase
-from .models import Reminder
+from .api.models import Reminder
 
 class ReminderTests(APITestCase):
     def test_create_reminder(self):
