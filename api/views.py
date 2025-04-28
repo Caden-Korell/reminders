@@ -13,5 +13,8 @@ class ReminderDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Reminder.objects.all()
     serializer_class = ReminderSerializer
 
-def reminders_page(request):
+def reminders_page(request):     # links to viewing reminders
     return render(request, 'reminders.html')
+
+def homepage(request):       # links to homepage
+    return render(request, 'reminders.html')  # different homepage change html
