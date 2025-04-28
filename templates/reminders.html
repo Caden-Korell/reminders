@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Reminders</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>All Reminders</h1>
+    <table id="remindersTable">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Remind At</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Reminders will be dynamically inserted here -->
+        </tbody>
+    </table>
+
+    <script>
+        // Fetch all reminders from the API and display them in the table
+        function loadReminders() {
+            fetch('http://127.0.0.1:8000/api/reminders/')
+                .then(response => response.json())
+                .then(data => {
+                    const remindersTable = document.getElementById('remindersTable').getElementsByTagName('tbody')[0];
+                    remindersTable.innerHTML = '';  // Clear existing rows
+
+                    data.forEach(reminder => {
+                        const row = remindersTable.insertRow();
+
+                        const titleCell = row.insertCell(0);
+                        titleCell.textContent = reminder.title;
+
+                        const descriptionCell = row.insertCell(1);
+                        descriptionCell.textContent = reminder.description;
+
+                        const remindAtCell = row.insertCell(2);
+                        remindAtCell.textContent = new Date(reminder.remind_at).toLocaleString();  // Format date
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching reminders:', error);
+                });
+        }
+
+        // Load reminders when the page is ready
+        window.onload = loadReminders;
+    </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+[tool.coverage.run]
+branch = true
+parallel = true
+omit = ["conf/*.py", "manage.py"]
+source = ["."]
+command_line = "manage.py test"
+
+[tool.coverage.report]
+omit = ["conf/*.py", "manage.py"]
+show_missing = true
+skip_covered = true
