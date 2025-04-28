@@ -1,79 +1,119 @@
+<!-- templates/reminders.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Reminders</title>
+    <title>Reminders</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
             margin: 0;
-            padding: 20px;
+            padding: 0;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0,0,0,0.1);
         }
-        th, td {
-            padding: 12px;
-            border: 1px solid #ddd;
-            text-align: left;
+        h1 {
+            text-align: center;
+            color: #333;
         }
-        th {
+        form {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 30px;
+        }
+        input, button {
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
             background-color: #4CAF50;
             color: white;
+            border: none;
+            cursor: pointer;
         }
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
+        button:hover {
+            background-color: #45a049;
+        }
+        .reminder-list {
+            margin-top: 20px;
+        }
+        .reminder-item {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .reminder-item span {
+            display: block;
+            color: #555;
         }
     </style>
 </head>
 <body>
-    <h1>All Reminders</h1>
-    <table id="remindersTable">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Remind At</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Reminders will be dynamically inserted here -->
-        </tbody>
-    </table>
+    <div class="container">
+        <h1>Reminders</h1>
+
+        <form id="reminder-form">
+            <input type="text" id="title" placeholder="Reminder title" required>
+            <input type="datetime-local" id="remind_at" required>
+            <button type="submit">Create Reminder</button>
+        </form>
+
+        <div class="reminder-list" id="reminder-list">
+            <!-- Reminders will appear here -->
+        </div>
+    </div>
 
     <script>
-        // Fetch all reminders from the API and display them in the table
-        function loadReminders() {
-            fetch('http://127.0.0.1:8000/api/reminders/')
-                .then(response => response.json())
-                .then(data => {
-                    const remindersTable = document.getElementById('remindersTable').getElementsByTagName('tbody')[0];
-                    remindersTable.innerHTML = '';  // Clear existing rows
-
-                    data.forEach(reminder => {
-                        const row = remindersTable.insertRow();
-
-                        const titleCell = row.insertCell(0);
-                        titleCell.textContent = reminder.title;
-
-                        const descriptionCell = row.insertCell(1);
-                        descriptionCell.textContent = reminder.description;
-
-                        const remindAtCell = row.insertCell(2);
-                        remindAtCell.textContent = new Date(reminder.remind_at).toLocaleString();  // Format date
-                    });
-                })
-                .catch(error => {
-                    console.error('Error fetching reminders:', error);
-                });
+        async function fetchReminders() {
+            const response = await fetch('/api/reminders/');
+            const reminders = await response.json();
+            const reminderList = document.getElementById('reminder-list');
+            reminderList.innerHTML = '';
+            reminders.forEach(reminder => {
+                const item = document.createElement('div');
+                item.className = 'reminder-item';
+                item.innerHTML = `
+                    <strong>${reminder.title}</strong>
+                    <span>Remind at: ${new Date(reminder.remind_at).toLocaleString()}</span>
+                `;
+                reminderList.appendChild(item);
+            });
         }
 
-        // Load reminders when the page is ready
-        window.onload = loadReminders;
+        document.getElementById('reminder-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const title = document.getElementById('title').value;
+            const remind_at = document.getElementById('remind_at').value;
+
+            await fetch('/api/reminders/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ title, remind_at }),
+            });
+
+            document.getElementById('title').value = '';
+            document.getElementById('remind_at').value = '';
+            fetchReminders();
+        });
+
+        // Load reminders when page loads
+        fetchReminders();
     </script>
 </body>
 </html>
