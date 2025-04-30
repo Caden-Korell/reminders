@@ -1,0 +1,72 @@
+[33mcommit d3b56f3ce22115cee6050f1a504eb442b9b97af2[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Bstones <brennenstones@gmail.com>
+Date:   Mon Apr 28 14:55:50 2025 -0500
+
+    messed up, here it is
+
+[33mcommit b882e7279b2d99eea5ab9d7743e799e33bea5250[m
+Merge: 21de097 0624c8e
+Author: Bobbert Bongwater <148905130+Bstones03@users.noreply.github.com>
+Date:   Mon Apr 28 14:47:01 2025 -0500
+
+    Merge pull request #1 from Caden-Korell/test
+
+[33mcommit 0624c8e5116ef5a0b5c1da8777e2db34ce1a2864[m
+Author: Bstones <brennenstones@gmail.com>
+Date:   Mon Apr 28 14:38:10 2025 -0500
+
+    Added homepage placeholder at reminders.html
+
+[33mcommit 21de097ef0bed120d1401e0c5815543fc69c2ee9[m
+Author: Bstones <brennenstones@gmail.com>
+Date:   Sun Apr 27 19:04:30 2025 -0500
+
+    V0.1
+
+[33mcommit d8a2771635c1066c67cccc404e7a64afe37d7d32[m
+Author: Bstones <brennenstones@gmail.com>
+Date:   Sun Apr 27 17:30:13 2025 -0500
+
+    edits to get html working
+
+[33mcommit dfe94d3f7514884374cbbe3ab7f560811193af41[m
+Author: Bstones <brennenstones@gmail.com>
+Date:   Sun Apr 27 17:29:38 2025 -0500
+
+    made template folder and had simple ai html page for placeholder and testing
+
+[33mcommit e1a8768e0bfb599d4d7a656bf07763f279f978c0[m
+Author: Bstones <brennenstones@gmail.com>
+Date:   Sun Apr 27 17:22:20 2025 -0500
+
+    moved stuff around because extra unessesary folder causing errors
+
+[33mcommit e1efd9b0dd708dd61a61040319c99ff3b76b8180[m
+Author: Bstones <brennenstones@gmail.com>
+Date:   Sun Apr 27 17:12:32 2025 -0500
+
+    fixed mistype for api.uls
+
+[33mcommit e63bc160b5c58b4f39003fe8d97cb9497f9935da[m
+Author: Bstones <brennenstones@gmail.com>
+Date:   Sun Apr 27 16:34:05 2025 -0500
+
+    getting the server up
+
+[33mcommit dbaee7610eb01e7d9b95404641a744c0c94480e7[m
+Author: Bstones <brennenstones@gmail.com>
+Date:   Sun Apr 27 16:22:17 2025 -0500
+
+    v0.1
+
+[33mcommit fc9acdf3b7563a32ecf2a3bb5757402d038a756b[m
+Author: Bstones <brennenstones@gmail.com>
+Date:   Wed Apr 16 19:25:29 2025 -0500
+
+    v0
+
+[33mcommit 00e99cb3c1b36d7eee38a0d6ad73c31adc29bf3a[m
+Author: Caden Korell <cadengkorell@gmail.com>
+Date:   Thu Mar 20 14:33:30 2025 -0500
+
+    my code
