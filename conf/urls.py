@@ -1,9 +1,8 @@
-from django.contrib import admin
-from django.urls import path, include
-from api.views import homepage
+from django.urls import path
+from .views import ReminderListCreateView, ReminderDetailView, reminders_page
 
 urlpatterns = [
-    path('', homepage, name='homepage'),
-    path('admin/', admin.site.urls),
-    path('api/', include('api.urls')),
+    path('reminders/', ReminderListCreateView.as_view(), name='reminder-list-create'),
+    path('reminders/<int:pk>/', ReminderDetailView.as_view(), name='reminder-detail'),
+    path('view-reminders/', reminders_page, name='view-reminders'),
 ]
