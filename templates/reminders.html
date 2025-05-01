@@ -3,7 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <title>Reminders</title>
-   <link rel="stylesheet" href="../static/css/styles.css">>
+   <style>
+       /*
+ * Author: Harvey Weinstein
+ * Email: harvey.wealter@student.cune.edu
+ * Github: https://github.com/Caden-Korell/reminders
+ * Purpose: Styles for the Reminders app layout.
+ * I couldn't for the life of me get this as a seperate CSS file in static and have it work so here it is
+
+/* ========== Global Styles ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    color: #0F1419;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+
+/* ========== Main Container ========== */
+.container {
+    max-width: 800px;
+    width: 100%;
+    background: #FFFFFF;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    transition: transform 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+}
+
+
+/* ========== Heading ========== */
+h1 {
+    text-align: center;
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: #0F1419;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+
+/* ========== Reminder Form ========== */
+form {
+    max-width: 600px;
+    margin: 0 auto 30px;
+    background: #F9FAFB;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #E1E8ED;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #FF6B6B;
+}
+
+button {
+    background: linear-gradient(90deg, #FF6B6B, #FF8E53);
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    align-self: flex-end;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background: linear-gradient(90deg, #FF8E53, #FF6B6B);
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+
+/* ========== Reminder List ========== */
+.reminder-list {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.reminder-item {
+    background: #FFFFFF;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    animation: bounceIn 0.5s ease;
+}
+
+.reminder-item:hover {
+    transform: translateY(-5px);
+}
+
+.reminder-item strong {
+    font-size: 18px;
+    font-weight: 600;
+    color: #0F1419;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.reminder-item span {
+    color: #657786;
+    font-size: 15px;
+}
+
+
+/* ========== Animations ========== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+
+/* ========== Responsive Styles ========== */
+@media (max-width: 600px) {
+    body {
+        padding: 15px;
+    }
+
+    .container {
+        margin: 10px;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    form, .reminder-list {
+        margin: 0 10px;
+    }
+
+    input, button {
+        font-size: 14px;
+    }
+
+    .reminder-item {
+        padding: 15px;
+    }
+}
+   </style>
 </head>
 <body>
     <div class="container">
