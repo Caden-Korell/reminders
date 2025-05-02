@@ -17,6 +17,8 @@ It also fetches all existing reminders and updates the page dynamically using Ja
 Everything is built into a single HTML file — styling, scripts, layout — all in one place.
 
 ## Credit
-Brennen - Built backend and database
-Harvey - Built html and styled it to look good
-Caden - set up api calls for GET and POST requests
+Brennen - Built backend and database.
+
+Harvey - Built html and styled it to look good.
+
+Caden - set up api calls for GET and POST requests.
