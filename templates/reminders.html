@@ -5,188 +5,301 @@
     <title>Reminders</title>
    <style>
        /*
- * Author: Harvey Weinstein
- * Email: harvey.wealter@student.cune.edu
+ * Author: Harvey Walter
+ * Email: harvey.walter@student.cune.edu
  * Github: https://github.com/Caden-Korell/reminders
  * Purpose: Styles for the Reminders app layout.
  * I couldn't for the life of me get this as a seperate CSS file in static and have it work so here it is
 
 /* ========== Global Styles ========== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #0F1419;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode {
+            background: #1A1A2E;
+            color: #E0E0E0;
+        }
+
+       
+        /* ========== Header ========== */
+        .header {
+            background: linear-gradient(90deg, #D81B60, #8E2DE2);
+            color: #FFFFFF;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .header__logo-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .header__logo {
+            width: 40px;
+            height: 40px;
+            background: #E1E8ED;
+            border-radius: 50%;
+            animation: bounceIn 0.5s ease;
+        }
+
+        .header__title {
+            font-weight: 700;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+       
+        /* ========== Main Container ========== */
+        .main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            flex: 1;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: #FFFFFF;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .container.dark-mode {
+            background: #2D2D44;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+        }
+
+       
+        /* ========== Reminder Form ========== */
+        form {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            background: #F9FAFB;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            transition: background 0.3s ease;
+        }
+
+        form.dark-mode {
+            background: #3A3A5A;
+        }
+
+        .form__user-info {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .form__avatar {
+            width: 40px;
+            height: 40px;
+            background: #E1E8ED;
+            border-radius: 50%;
+            animation: bounceIn 0.5s ease;
+            transition: background 0.3s ease;
+        }
+
+        .form__avatar.dark-mode {
+            background: #4A4A6A;
+        }
+
+        input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #E1E8ED;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            transition: border-color 0.3s ease, background 0.3s ease;
+        }
+
+        input.dark-mode {
+            background: #2D2D44;
+            color: #E0E0E0;
+            border-color: #4A4A6A;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #6B48FF;
+        }
+
+        button {
+            background: linear-gradient(90deg, #D81B60, #8E2DE2);
+            color: #FFFFFF;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            align-self: flex-end;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(90deg, #B01750, #7A24C6);
+            transform: scale(1.05);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+       
+        /* ========== Reminder List ========== */
+        .reminder-list {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .reminder-item {
+            background: #FFFFFF;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, background 0.3s ease;
+            animation: bounceIn 0.5s ease;
+        }
+
+        .reminder-item.dark-mode {
+            background: #2D2D44;
+        }
+
+        .reminder-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .reminder-item strong {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0F1419;
+            margin-bottom: 5px;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .reminder-item.dark-mode strong {
+            color: #E0E0E0;
+        }
+
+        .reminder-item span {
+            color: #657786;
+            font-size: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .reminder-item.dark-mode span {
+            color: #A0A0C0;
+        }
+
+       
+        /* ========== Dark Mode Toggle ========== */
+        .toggle-container {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .dark-mode-toggle {
+            background: #D81B60; /
+            color: #FFFFFF;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+.dark-mode-toggle:hover {
+    background: #B01750;
 }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    color: #0F1419;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
+       
+        /* ========== Animations ========== */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
+        @keyframes bounceIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
 
-/* ========== Main Container ========== */
-.container {
-    max-width: 800px;
-    width: 100%;
-    background: #FFFFFF;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    margin: 20px auto;
-    transition: transform 0.3s ease;
-}
+       
+        /* ========== Responsive Styles ========== */
+        @media (max-width: 600px) {
+            .main {
+                padding: 15px;
+            }
 
-.container:hover {
-    transform: translateY(-5px);
-}
+            .container {
+                margin: 10px;
+                padding: 20px;
+            }
 
+            h1 {
+                font-size: 2rem;
+            }
 
-/* ========== Heading ========== */
-h1 {
-    text-align: center;
-    font-weight: 700;
-    font-size: 2.5rem;
-    color: #0F1419;
-    margin-bottom: 30px;
-    letter-spacing: 1px;
-    animation: fadeIn 1s ease-in-out;
-}
+            form, .reminder-list {
+                margin: 0 10px;
+            }
 
+            input, button {
+                font-size: 14px;
+            }
 
-/* ========== Reminder Form ========== */
-form {
-    max-width: 600px;
-    margin: 0 auto 30px;
-    background: #F9FAFB;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
+            .reminder-item {
+                padding: 15px;
+            }
 
-input {
-    padding: 10px;
-    border: 1px solid #E1E8ED;
-    border-radius: 10px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 16px;
-    transition: border-color 0.3s ease;
-}
-
-input:focus {
-    outline: none;
-    border-color: #FF6B6B;
-}
-
-button {
-    background: linear-gradient(90deg, #FF6B6B, #FF8E53);
-    color: #FFFFFF;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 16px;
-    align-self: flex-end;
-    transition: background 0.3s ease, transform 0.2s ease;
-}
-
-button:hover {
-    background: linear-gradient(90deg, #FF8E53, #FF6B6B);
-    transform: scale(1.05);
-}
-
-button:active {
-    transform: scale(0.98);
-}
-
-
-/* ========== Reminder List ========== */
-.reminder-list {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.reminder-item {
-    background: #FFFFFF;
-    border-radius: 15px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    animation: bounceIn 0.5s ease;
-}
-
-.reminder-item:hover {
-    transform: translateY(-5px);
-}
-
-.reminder-item strong {
-    font-size: 18px;
-    font-weight: 600;
-    color: #0F1419;
-    margin-bottom: 5px;
-    display: block;
-}
-
-.reminder-item span {
-    color: #657786;
-    font-size: 15px;
-}
-
-
-/* ========== Animations ========== */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes bounceIn {
-    0% { transform: scale(0); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1); }
-}
-
-
-/* ========== Responsive Styles ========== */
-@media (max-width: 600px) {
-    body {
-        padding: 15px;
-    }
-
-    .container {
-        margin: 10px;
-        padding: 20px;
-    }
-
-    h1 {
-        font-size: 2rem;
-    }
-
-    form, .reminder-list {
-        margin: 0 10px;
-    }
-
-    input, button {
-        font-size: 14px;
-    }
-
-    .reminder-item {
-        padding: 15px;
-    }
-}
+            .header__title {
+                font-size: 2rem;
+            }
+        }
    </style>
 </head>
 <body>
+      <header class="header">
+        <div class="header__logo-title">
+            <div class="header__logo"></div>
+            <h1 class="header__title">Reminders</h1>
+        </div>
+    </header>
+
+ <main class="main">   
     <div class="container">
         <h1>Reminders</h1>
 
@@ -200,7 +313,12 @@ button:active {
             <!-- Reminders will appear here -->
         </div>
     </div>
+ </main>
 
+<div class="toggle-container">
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+</div>
+    
     <script>
         async function fetchReminders() {
             const response = await fetch('/api/reminders/');
@@ -237,6 +355,15 @@ button:active {
         });
 
         fetchReminders();
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            document.querySelector('.container').classList.toggle('dark-mode');
+            document.querySelector('form').classList.toggle('dark-mode');
+            document.querySelector('.form__avatar').classList.toggle('dark-mode');
+            document.querySelectorAll('.reminder-item').forEach(item => item.classList.toggle('dark-mode'));
+            document.querySelectorAll('input').forEach(input => input.classList.toggle('dark-mode'));
+        }
     </script>
 </body>
 </html>
