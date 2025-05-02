@@ -237,11 +237,17 @@
             border-radius: 20px;
             cursor: pointer;
             font-weight: 600;
-            transition: background 0.3s ease, color 0.3s ease;
+            font-size: 16px;
+            transition: background 0.3s ease, transform 0.2s ease;
         }
 
         .dark-mode-toggle:hover {
-            background: linear-gradient(90deg, #D81B60, #8E2DE2);
+            background: linear-gradient(90deg, #B01750, #7A24C6);
+            transform: scale(1.05);
+        }
+
+        .dark-mode-toggle:active {
+            transform: scale(0.98);
         }
 
        
